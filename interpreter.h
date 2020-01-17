@@ -1,3 +1,3 @@
-extern char *interpreter1[];
+extern char* userinput;
 
-void interpreter();
+extern void interpret(char** parsedInput);
