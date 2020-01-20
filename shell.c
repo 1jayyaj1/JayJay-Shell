@@ -21,9 +21,9 @@ char** parse(char userInput[]) {
 
 int main() {
     char userInput[50];
+    printf("Welcome to the JayJay shell!\n");
+    printf("Version 1.0 Created January 2020\n");
     do {
-        printf("Welcome to the JayJay shell!\n");
-        printf("Version 1.0 Created January 2020\n");
         printf("$ ");
         scanf("%s", userInput);
         interpret(parse(userInput));
