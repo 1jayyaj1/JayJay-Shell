@@ -12,9 +12,6 @@ void help() {
 }
 
 void interpret(char** parsedInput) {
-    /*for (int j = 0; j < sizeof(parsedInput); j++) {
-        printf("%s", parsedInput[j]);
-    }*/
     if (strcmp(parsedInput[0], "help") == 0) {
         help();
     }
