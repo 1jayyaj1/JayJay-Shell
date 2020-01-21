@@ -20,5 +20,9 @@ void interpret(char** parsedInput) {
         help();
     } else if (strcmp(parsedInput[0], "wassup") == 0 && strcmp(parsedInput[1], "dawg") == 0) {
         testt();
+    } else {
+        if (strcmp(parsedInput[0], "quit") != 0) {
+            printf("Unknown command\n");
+        }
     }
 }
