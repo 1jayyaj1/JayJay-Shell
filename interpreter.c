@@ -11,8 +11,14 @@ void help() {
     printf("run SCRIPT.txt: Executes the file SCRIPT.TXT\n");
 }
 
+void testt() {
+    printf("Not much and u?\n");
+}
+
 void interpret(char** parsedInput) {
     if (strcmp(parsedInput[0], "help") == 0) {
         help();
+    } else if (strcmp(parsedInput[0], "wassup") == 0 && strcmp(parsedInput[1], "dawg") == 0) {
+        testt();
     }
 }

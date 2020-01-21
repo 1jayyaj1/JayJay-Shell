@@ -24,8 +24,11 @@ int main() {
     printf("Welcome to the JayJay shell!\n");
     printf("Version 1.0 Created January 2020\n");
     do {
+        int size;
         printf("$ ");
-        scanf("%s", userInput);
+        fgets(userInput,50,stdin);
+        size = strlen(userInput);
+        userInput[size-1]='\0';
         interpret(parse(userInput));
 	}
 	while(strcmp(parse(userInput)[0],"quit")!=0);
