@@ -15,7 +15,15 @@ void setVar(char** parsedInput) {
     if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") == 0 || strcmp(parsedInput[3], "") != 0) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
-        printf("Success\n");
+        printf("Success set\n"); //Will change
+    }
+}
+
+void printVar(char** parsedInput) {
+    if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") != 0) {
+        printf("Please use this format to print a variable: print VAR\n");
+    } else {
+        printf("Success print\n"); //Will change
     }
 }
 
@@ -24,6 +32,8 @@ void interpret(char** parsedInput) {
         help();
     } else if (strcmp(parsedInput[0], "set") == 0) {
         setVar(parsedInput);
+    } else if (strcmp(parsedInput[0], "print") == 0) {
+        printVar(parsedInput);
     } else {
         if (strcmp(parsedInput[0], "quit") != 0 && strcmp(parsedInput[0], "") != 0) {
             printf("Unknown command\n");
