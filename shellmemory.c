@@ -1,58 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "shellmemory.h"
 
-char *model1[1000];
+Node *Node_create() {
+    Node *node = malloc(sizeof(Node));
+ 
 
-char *model2[1000][2];
+    node->var = "";
+    node->value = "";
+    node->next = NULL;
 
-struct MODEL3 {
-        char *var;
-        char *value;
-        struct MODEL3 *next;
-} head;
-
-int match(char *model, char *var) {
-    int i, len=strlen(var), matchCount=0;
-    for(i=0;i<len;i++) {
-        if (*(model+i) == *(var+i)) {
-            matchCount++;
-        }
-    }
-    if (matchCount == len) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
+    return node;
 }
 
-char *extract(char *model) {
-    char token='=';
-    char value[1000];
-    int i,j, len=strlen(model);
-    for(i=0;i<len && *(model+i)!=token;i++);
-    for(i=i+1,j=0;i<len;i++,j++) value[j]=*(model+i);
-    value[j]='\0';
-    return strdup(value);
+List *List_create() {
+    List *list = malloc(sizeof(List));
+
+
+    Node *node = Node_create();
+    list->first = node;
+
+    return list;
 }
 
-void m1Set(char *string) {
-    int i=0;
-    for(i=0;i<1000;i++) {
-        if (model1[i]==NULL) {
-            model1[i] = strdup(string);
-            break;
-        }
+void List_append(List *list, char *var, char *value) {
+
+
+    Node *node = list->first;
+    while (node->next != NULL) {
+        node = node->next;
     }
+
+    node->var = var;
+    node->value = value;
+    node->next = Node_create();
 }
 
-char *m1Get(char *var) {
-    int i=0;
-    for(i=0;i<1000;i++) {
-        if (match(model1[i],var)) {
-            return extract(model1[i]);
+char *List_find(List *list, char *var) {
+    
+
+    int index = 0;
+    Node *node = list->first;
+    while (node->next != NULL) {
+        if (strlen(var) == strlen(node->var)) {
+            int cmp = strcmp(var, node->var);
+            if (cmp == 0) {
+                return node->value;
+            }
         }
+        node = node->next;
+        index++;
     }
     return "Not found";
 }

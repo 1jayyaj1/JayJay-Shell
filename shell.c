@@ -21,6 +21,7 @@ char** parse(char userInput[]) {
 
 int main() {
     char userInput[50];
+    List *l = List_create();
     printf("Welcome to the JayJay shell!\n");
     printf("Version 1.0 Created January 2020\n");
     do {
@@ -29,7 +30,7 @@ int main() {
         fgets(userInput,50,stdin);
         size = strlen(userInput);
         userInput[size-1]='\0';
-        interpret(parse(userInput));
+        interpret(parse(userInput),l);
 	}
 	while(strcmp(parse(userInput)[0],"quit")!=0);
 	printf("Bye!\n");

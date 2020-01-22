@@ -1,3 +1,2 @@
-extern char* userinput;
-
-extern void interpret(char** parsedInput);
+#include "shellmemory.h"
+extern void interpret(char** parsedInput, List *l);

@@ -1,4 +1,18 @@
-extern char *model1[];
+typedef struct NodeTag {
+    char *var;
+    char *value;
+    struct NodeTag *next;
+} Node;
 
-char *m1Get(char *var);
-void m1Set(char *set);
+Node *Node_create();
+
+typedef struct ListTag {
+    struct NodeTag *first;
+} List;
+
+List *List_create();
+
+void List_append(List *list, char *str, char *str2);
+
+char *List_find(List *list, char *str);
+

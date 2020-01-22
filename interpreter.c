@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h> 
+#include "shellmemory.h"
 
 void help() {
     printf("COMMANDS:\n");
@@ -11,29 +12,29 @@ void help() {
     printf("run SCRIPT.txt: Executes the file SCRIPT.TXT\n");
 }
 
-void setVar(char** parsedInput) {
+void setVar(char** parsedInput, List *l) {
     if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") == 0 || strcmp(parsedInput[3], "") != 0) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
-        printf("Success set\n"); //Will change
-    }
+        List_append(l, parsedInput[1], parsedInput[2]);
+    }   
 }
 
-void printVar(char** parsedInput) {
+void printVar(char** parsedInput, List *l) {
     if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") != 0) {
         printf("Please use this format to print a variable: print VAR\n");
     } else {
-        printf("Success print\n"); //Will change
+        printf("%s", List_find(l, parsedInput[1]));
     }
 }
 
-void interpret(char** parsedInput) {
+void interpret(char** parsedInput, List *l) {
     if (strcmp(parsedInput[0], "help") == 0) {
         help();
     } else if (strcmp(parsedInput[0], "set") == 0) {
-        setVar(parsedInput);
+        setVar(parsedInput,l);
     } else if (strcmp(parsedInput[0], "print") == 0) {
-        printVar(parsedInput);
+        printVar(parsedInput,l);
     } else {
         if (strcmp(parsedInput[0], "quit") != 0 && strcmp(parsedInput[0], "") != 0) {
             printf("Unknown command\n");
