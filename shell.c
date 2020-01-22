@@ -4,6 +4,8 @@
 #include "interpreter.h"
 #include "shellmemory.h"
 
+List *l;
+
 char** parse(char userInput[]) {
     char ** parsedUserInput = malloc(100 * sizeof(char*));
     for (int i = 0 ; i < 100; ++i) {
@@ -21,7 +23,7 @@ char** parse(char userInput[]) {
 
 int main() {
     char userInput[50];
-    List *l = List_create();
+    l = List_create();
     printf("Welcome to the JayJay shell!\n");
     printf("Version 1.0 Created January 2020\n");
     do {

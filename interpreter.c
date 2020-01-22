@@ -17,14 +17,15 @@ void setVar(char** parsedInput, List *l) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
         List_append(l, parsedInput[1], parsedInput[2]);
+        
     }   
 }
 
 void printVar(char** parsedInput, List *l) {
-    if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") != 0) {
-        printf("Please use this format to print a variable: print VAR\n");
+    if (strcmp(parsedInput[0], "") == 0 || strcmp(parsedInput[1], "") == 0) {
+        printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
-        printf("%s", List_find(l, parsedInput[1]));
+        List_find(l, parsedInput[1]);
     }
 }
 

@@ -1,3 +1,5 @@
+#ifndef SHELLMEMORY_H
+#define SHELLMEMORY_H
 typedef struct NodeTag {
     char *var;
     char *value;
@@ -12,7 +14,10 @@ typedef struct ListTag {
 
 List *List_create();
 
-void List_append(List *list, char *str, char *str2);
+void List_append(List *list, char *var, char *value);
 
-char *List_find(List *list, char *str);
+void List_find(List *list, char *var);
+
+void List_print(List *list);
+#endif
 

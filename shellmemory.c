@@ -15,6 +15,7 @@ Node *Node_create() {
 }
 
 List *List_create() {
+    printf("test");
     List *list = malloc(sizeof(List));
 
 
@@ -35,22 +36,38 @@ void List_append(List *list, char *var, char *value) {
     node->var = var;
     node->value = value;
     node->next = Node_create();
+    List_print(list);
 }
 
-char *List_find(List *list, char *var) {
-    
-
-    int index = 0;
+void List_find(List *list, char *var) {
     Node *node = list->first;
     while (node->next != NULL) {
+   
         if (strlen(var) == strlen(node->var)) {
             int cmp = strcmp(var, node->var);
             if (cmp == 0) {
-                return node->value;
+                printf("%s", node->value);
             }
         }
         node = node->next;
-        index++;
     }
-    return "Not found";
+    printf("%s","Not found\n");
+}
+
+void List_print(List *list) {
+
+    printf("[");
+    Node *node = list->first;
+    while (node->next != NULL) {
+        printf("(Var: ");
+        printf("%s", node->var);
+        printf(", Value: ");
+        printf("%s", node->value);
+         printf(")");
+        node = node->next;
+        if (node->next != NULL) {
+            printf(", ");
+        }
+    }
+    printf("]\n");
 }
