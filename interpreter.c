@@ -16,21 +16,20 @@ void setVar(char** parsedInput, List *l) {
     if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") == 0 || strcmp(parsedInput[3], "") != 0) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
-        List_append(l, parsedInput[1], parsedInput[2]);
-        
+        List_append(l, strdup(parsedInput[1]), strdup(parsedInput[2]));
     }   
 }
 
 void printVar(char** parsedInput, List *l) {
-    if (strcmp(parsedInput[0], "") == 0 || strcmp(parsedInput[1], "") == 0) {
+    if (strcmp(parsedInput[0], "") == 0 || strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") != 0) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
-        List_find(l, parsedInput[1]);
+        printf("%s\n", List_find(l, strdup(parsedInput[1])));
     }
 }
 
 void interpret(char** parsedInput, List *l) {
-    if (strcmp(parsedInput[0], "help") == 0) {
+    if (strcmp(parsedInput[0], "help") == 0 && strcmp(parsedInput[1], "") == 0) {
         help();
     } else if (strcmp(parsedInput[0], "set") == 0) {
         setVar(parsedInput,l);

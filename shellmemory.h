@@ -16,8 +16,7 @@ List *List_create();
 
 void List_append(List *list, char *var, char *value);
 
-void List_find(List *list, char *var);
+char *List_find(List *list, char *var);
 
 void List_print(List *list);
 #endif
-
