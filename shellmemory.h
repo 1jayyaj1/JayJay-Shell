@@ -18,7 +18,7 @@ void List_append(List *list, char *var, char *value);
 
 char *List_find(List *list, char *var);
 
-void List_update(List *list, char *var);
+char *List_update(List *list, char *var, char *value);
 
 void List_print(List *list);
 #endif
