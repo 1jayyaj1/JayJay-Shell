@@ -20,7 +20,7 @@ void setVar(char** parsedInput, List *l) {
         if (strcmp(var, "Not found") == 0) {
             List_append(l, strdup(parsedInput[1]), strdup(parsedInput[2]));
         } else {
-            printf("Update\n");
+            List_update(l, strdup(parsedInput[1]));
         }
     }   
 }

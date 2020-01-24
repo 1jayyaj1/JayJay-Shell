@@ -43,6 +43,10 @@ char* List_find(List *list, char *var) {
     return "Not found";
 }
 
+void List_update(List *list, char *var) {
+    printf("Update\n");
+}
+
 void List_print(List *list) {
     printf("[");
     Node *node = list->first;
