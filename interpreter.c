@@ -16,7 +16,12 @@ void setVar(char** parsedInput, List *l) {
     if (strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") == 0 || strcmp(parsedInput[3], "") != 0) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
-        List_append(l, strdup(parsedInput[1]), strdup(parsedInput[2]));
+        char *var = List_find(l, strdup(parsedInput[1]));
+        if (strcmp(var, "Not found") == 0) {
+            List_append(l, strdup(parsedInput[1]), strdup(parsedInput[2]));
+        } else {
+            printf("Update\n");
+        }
     }   
 }
 
