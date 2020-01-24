@@ -33,6 +33,10 @@ void printVar(char** parsedInput, List *l) {
     }
 }
 
+void runFile(char** parsedInput) {
+    
+}
+
 void interpret(char** parsedInput, List *l) {
     if (strcmp(parsedInput[0], "help") == 0 && strcmp(parsedInput[1], "") == 0) {
         help();
@@ -40,6 +44,8 @@ void interpret(char** parsedInput, List *l) {
         setVar(parsedInput,l);
     } else if (strcmp(parsedInput[0], "print") == 0) {
         printVar(parsedInput,l);
+    } else if (strcmp(parsedInput[0], "run") == 0) {
+        runFile(parsedInput);
     } else {
         if (strcmp(parsedInput[0], "quit") != 0 && strcmp(parsedInput[0], "") != 0) {
             printf("Unknown command\n");
