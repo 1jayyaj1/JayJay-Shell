@@ -40,7 +40,7 @@ char* List_find(List *list, char *var) {
         }
         node = node->next;
     }
-    return "Not found";
+    return "Variable does not exist";
 }
 
 char* List_update(List *list, char *var, char *value) {

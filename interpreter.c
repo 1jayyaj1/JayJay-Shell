@@ -17,7 +17,7 @@ void setVar(char** parsedInput, List *l) {
         printf("Please use this format to set a variable: set VAR STRING\n");
     } else {
         char *var = List_find(l, strdup(parsedInput[1]));
-        if (strcmp(var, "Not found") == 0) {
+        if (strcmp(var, "Variable does not exist") == 0) {
             List_append(l, strdup(parsedInput[1]), strdup(parsedInput[2]));
         } else {
             List_update(l, strdup(parsedInput[1]), strdup(parsedInput[2]));
