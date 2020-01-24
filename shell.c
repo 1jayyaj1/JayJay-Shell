@@ -6,21 +6,6 @@
 
 List *l;
 
-char** parse(char userInput[]) {
-    char ** parsedUserInput = malloc(100 * sizeof(char*));
-    for (int i = 0 ; i < 100; ++i) {
-        parsedUserInput[i] = malloc(100 * sizeof(char));
-    }
-    int i = 0;
-    char* token = strtok(userInput, " ");
-    while (token != NULL) {
-        parsedUserInput[i] = token;
-        token = strtok(NULL, " ");
-        i++;
-    }
-    return parsedUserInput;
-}
-
 int main() {
     char userInput[50];
     l = List_create();

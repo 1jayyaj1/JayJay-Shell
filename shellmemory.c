@@ -34,7 +34,6 @@ char* List_find(List *list, char *var) {
         if (strlen(var) == strlen(node->var)) {
             int cmp = strcmp(var, node->var);
             if (cmp == 0) {
-                List_print(list);
                 return node->value;
             }
         }
@@ -44,14 +43,12 @@ char* List_find(List *list, char *var) {
 }
 
 char* List_update(List *list, char *var, char *value) {
-    printf("Update\n");
     Node *node = list->first;
     while (node->next != NULL) {
         if (strlen(var) == strlen(node->var)) {
             int cmp = strcmp(var, node->var);
             if (cmp == 0) {
                 node->value = value;
-                List_print(list);
                 return node->value;
             }
         }

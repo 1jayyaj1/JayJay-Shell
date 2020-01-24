@@ -3,6 +3,23 @@
 #include <strings.h> 
 #include "shellmemory.h"
 
+void interpret(char** parsedInput, List *l);
+
+char** parse(char userInput[]) {
+    char ** parsedUserInput = malloc(100 * sizeof(char*));
+    for (int i = 0 ; i < 100; ++i) {
+        parsedUserInput[i] = malloc(100 * sizeof(char));
+    }
+    int i = 0;
+    char* token = strtok(userInput, " ");
+    while (token != NULL) {
+        parsedUserInput[i] = token;
+        token = strtok(NULL, " ");
+        i++;
+    }
+    return parsedUserInput;
+}
+
 void help() {
     printf("COMMANDS:\n");
     printf("help: Displays all the commands\n");
@@ -33,8 +50,22 @@ void printVar(char** parsedInput, List *l) {
     }
 }
 
-void runFile(char** parsedInput) {
-    
+void runFile(char** parsedInput, List *l) {
+    if (strcmp(parsedInput[0], "") == 0 || strcmp(parsedInput[1], "") == 0 || strcmp(parsedInput[2], "") != 0) {
+        printf("Please use this format to run a text file: run SCRIPT.txt\n");
+    } else {
+        FILE* file = fopen(parsedInput[1], "r");
+        if (file != NULL) {
+            char line[256];
+            while (fgets(line, sizeof(line), file)) {
+                //printf("%s", line); 
+                interpret(parse(strtok(line, "\n")), l);
+            }
+            fclose(file);
+        } else {
+            printf("Script not found\n");
+        }
+    }
 }
 
 void interpret(char** parsedInput, List *l) {
@@ -45,7 +76,7 @@ void interpret(char** parsedInput, List *l) {
     } else if (strcmp(parsedInput[0], "print") == 0) {
         printVar(parsedInput,l);
     } else if (strcmp(parsedInput[0], "run") == 0) {
-        runFile(parsedInput);
+        runFile(parsedInput, l);
     } else {
         if (strcmp(parsedInput[0], "quit") != 0 && strcmp(parsedInput[0], "") != 0) {
             printf("Unknown command\n");

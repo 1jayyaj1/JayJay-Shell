@@ -5,4 +5,3 @@ set yo bob
 print yo
 set hey joe
 print hey
-quit
