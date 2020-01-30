@@ -7,18 +7,20 @@
 List *l;
 
 int main() {
-    char userInput[50];
+    char userInput[1000];
+    char prompt[100] = {'$', '\0'};
     l = List_create();
     printf("Welcome to the JayJay shell!\n");
     printf("Version 1.0 Created January 2020\n");
+    int leaveStatus = 0;
     do {
         int size;
-        printf("$ ");
-        fgets(userInput,50,stdin);
+        printf("%s ", prompt);
+        fgets(userInput,999,stdin);
         size = strlen(userInput);
         userInput[size-1]='\0';
-        interpret(parse(userInput),l);
+        leaveStatus = interpret(parse(userInput),l);
 	}
-	while(strcmp(parse(userInput)[0],"quit")!=0);
+	while(leaveStatus == 0);
 	printf("Bye!\n");
 }

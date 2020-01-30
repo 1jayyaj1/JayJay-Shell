@@ -43,19 +43,29 @@ char* List_find(List *list, char *var) {
 }
 
 char* List_update(List *list, char *var, char *value) {
-    Node *node = list->first;
-    while (node->next != NULL) {
-        if (strlen(var) == strlen(node->var)) {
-            int cmp = strcmp(var, node->var);
-            if (cmp == 0) {
-                node->value = value;
-                return node->value;
-            }
+    Node *current = list->first;
+    Node *previous = NULL;
+    if(list->first == NULL) {
+        return NULL;
+    }
+    while(strcmp(var, current->var) != 0) {
+        if(current->next == NULL) {
+            break;
+        } else {
+            previous = current;
+            current = current->next;
         }
     }
-    return "Error";
+    if(current == list->first) {
+        list->first = list->first->next;
+    } else {
+        previous->next = current->next;
+    }
+    List_append(list, strdup(var), strdup(value));
+    return "Success";
 }
 
+// This function was used for debugging purposes. Feel free to ignore it when grading!
 void List_print(List *list) {
     printf("[");
     Node *node = list->first;
